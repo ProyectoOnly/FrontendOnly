@@ -1,0 +1,24 @@
+.principal_header{
+    display: flex;
+ /*   flex-direction: column;  */
+    height: auto;
+    width: auto;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    box-sizing: border-box;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.6); 
+    margin: 25px;
+}
+.logoButton{
+    width: 180px;
+    box-sizing: border-box;
+    border-radius: 100px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.6);  
+}
+.header_part{
+    margin: 25px;
+}
+.img-logo{
+    width: 110px;
+}

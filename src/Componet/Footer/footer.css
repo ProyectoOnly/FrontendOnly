@@ -1,0 +1,17 @@
+
+.footerDis{
+    display: flex;
+    width: auto;
+    box-sizing: border-box;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.6); 
+    align-items: center;
+    justify-content: center;
+}
+.logotico{
+    width: 150px;
+    margin: 50px;
+}
+.footerLista{
+    align-items: center;
+    display: flex;
+}
