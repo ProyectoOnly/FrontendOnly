@@ -2,6 +2,7 @@ import React from "react";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
+import './login.css'
 
 const initInfo = {
   email: "",
@@ -26,9 +27,10 @@ const Login = ({ setUser }) => {
           loginUser(true);
 
              console.log("esro es la respuesta login:",response.data); 
-
+          
             setUser(response.data);
             navigate("/users");
+            window.location.reload()
         
         }
       })

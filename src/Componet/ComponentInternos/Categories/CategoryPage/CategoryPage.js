@@ -1,6 +1,6 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import "./categoryPage.css";
 
 const CategoryPage = () => {
@@ -19,27 +19,54 @@ const CategoryPage = () => {
     getMoviesByCategory();
   }, []);
 
+  const imagelook = (product) => {
+    const lookImage = [];
+    for (let i = 0; i < product.image.length; i++) {
+      lookImage.push(product.image[i].Url);
+    }
+
+    return (
+      <div className="divImagen">
+        <img className="imgproducts" src={lookImage[0]} alt={"images"} />
+      </div>
+    );
+  };
+    
   return (
-    <>
-      <h1>Categoría </h1>
-      <h2> Productos de esta categoría:</h2>
-      <div className="conta">
-        {products.map((product) => {
+    <div>
+    <div className=" bodyHome">
+      <div className="card">
+        {products.map((product, index) => {
           return (
-            <div className="page">
-              <div>
-                {product.name}
-                {product.price} €
-                {/* <br></br>
-                    <img src={`${process.env.REACT_APP_BACK_URL}${product.image}`} alt={"images"} /> */}
-              </div>
-              <br/>
+            <div className="divGeneralProducts">
+              <Link className="link" to={`/movies/${product._id}/`}>
+                <div>
+                  <div className="flip-card">
+                    <div className="flip-card-inner">
+                      <div className="flip-card-front">
+                        <div>{product.title}</div>
+
+                        {imagelook(product)}
+                      </div>
+                      <div className="flip-card-back">
+                        <div>{product.title}</div>
+                           <div className="text-card">
+                          <br />
+                          <div>Time: {product.time}</div>
+                          <br />
+                          <div>description: {product.description}</div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </Link>
             </div>
           );
         })}
       </div>
-      
-    </>
+    </div>
+  </div>
   );
 };
 

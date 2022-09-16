@@ -1,27 +1,8 @@
-/* .categories{
-    display: flex;
-    width: 100%;
-    justify-content: center;
-    flex-wrap:wrap;
-    text-align: center;
-}
 
-.iconCategory{
-    height: 100px;
-}
-
-.category {
-    margin: 10px;
-}
-
-.link {
-    text-decoration: none;
-} */
 .categories{
     align-content: center;
-    margin-left: 250px;
     display: flex;
-    overflow-x: scroll;
+    overflow-x:scroll;
     padding: 24px;
     width: 850px;
     scroll-snap-type: x mandatory;

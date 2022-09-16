@@ -11,6 +11,10 @@ import CategoryPage from "./Componet/ComponentInternos/Categories/CategoryPage/C
 import { UserContext } from "./context/UserContext";
 import Movie from "./Componet/Home/lookmovies/movie";
 import axios from "axios";
+import AddMovie from "./Componet/ComponentInternos/AddMovies/AddMovie";
+import UpdateUser from "./Componet/Header/login/paglogin/userUpdate";
+import UpdateMovies from "./Componet/ComponentInternos/AddMovies/UpdateMovies";
+import Comentary from "./Componet/Home/comentary/cometary";
 
 function App() {
 
@@ -61,6 +65,10 @@ function App() {
             <Route exact path="categories" element={<Categories />} />
             <Route exact path="users" element={<User />} />
             <Route exact path="/movies/:productId" element={<Movie/>} />
+            <Route exact path="addmovie" element={<AddMovie/>} />
+            <Route exact path="/movies/:productId/updatemovies" element={<UpdateMovies/>}/>
+            <Route exact path="updateuser" element={<UpdateUser/>}/>
+            <Route exact path="comentary" element={<Comentary/>}/>
             <Route
               exact
               path="/category/:categoryId"
