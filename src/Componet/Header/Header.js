@@ -1,14 +1,17 @@
 import React, { useState, useEffect } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useParams } from "react-router-dom";
 import { UserContext } from "../../context/UserContext";
 import { useContext } from "react";
 import Search from "./Search/Search";
 import "./header.css";
 import axios from "axios";
+
 const Header = () => {
   let location = useLocation();
+  
   const { user, logout } = useContext(UserContext);
   const [infoUser, setInfoUser] = useState([]);
+ 
   const userIdLocal = window.localStorage.getItem("UserId");
   useEffect(() => {
     axios
@@ -18,26 +21,7 @@ const Header = () => {
         setInfoUser(response.data);
       });
   }, []);
-  const imagenChanges = () => {
-    if (infoUser.images === []) {
-      return (
-        <div>
-          <img className="img-logo" src={infoUser.images} />
-         {console.log("profileimag1")}
-         </div>
-      );
-    } else {
-      return (
-        <div>
-          <img
-            className="img-logo"
-            src="https://res.cloudinary.com/privateonlywork/image/upload/v1660286904/category/iconprogiel_qdwbnf.png"
-          />
-           {console.log("profileimag2")}
-        </div>
-      );
-    }
-  };
+
   const buttonChange = () => {
     if (!user) {
       return (
@@ -46,36 +30,48 @@ const Header = () => {
         </button>
       );
     } else {
+      
       if (location.pathname === "/users") {
         return (
           <div className="ButtonProfile">
-            <div>
-              <button className="loginButton">
-                <Link to="updateuser"> EDITAR PERFIL </Link>
-              </button>
-            </div>
-            <div>
-              <button className="loginButton" onClick={logout}>
-                <Link to="/"> CERRAR SESION </Link>
-              </button>
+            <div className="dropdown">
+              <button className="dropbtn">{infoUser.name}</button>
+              <div className="dropdown-content">
+                <button className="loginButton">
+                  <Link to="updateuser"> EDITAR PERFIL </Link>
+                </button>
+                <button className="loginButton" onClick={logout}>
+                  <Link to="/"> CERRAR SESION </Link>
+                </button>
+                <button className="loginButton">
+                  <Link to="/addmovie">AGREGAR_MOVIE </Link>
+                </button>
+              </div>
             </div>
           </div>
         );
       } else {
+        
         return (
           <div className="ButtonProfile">
-            <div>
-              <button className="loginButton">
-                <Link to="users">
-                  <div>{imagenChanges()}</div>
+            <div className="dropdown">
+              <button class="dropbtn">
+                <Link className="link-logo" to="users">
+                  <div>
+                    {infoUser.images.length > 0 ? (
+                      <img className="img-logo" src={infoUser.images[0]} />
+                    ) : (
+                      <img className="img-logo" src={'https://res.cloudinary.com/privateonlywork/image/upload/v1660006728/cld-sample.jpg'} />
+                    )}
+                  </div>
                   <div>{infoUser.name}</div>
                 </Link>
               </button>
-            </div>
-            <div>
-              <button className="loginButton" onClick={logout}>
-                <Link to="/"> CERRAR SESION </Link>
-              </button>
+              <div class="dropdown-content">
+                <button className="loginButton" onClick={logout}>
+                  <Link to="/"> CERRAR SESION </Link>
+                </button>
+              </div>
             </div>
           </div>
         );
@@ -96,8 +92,7 @@ const Header = () => {
       </div>
       <div className="header_part">
         <h1>Wolf Time</h1>
-        <Search/>
-        {/* <input type="text" className="search" /> */}
+        <Search />
       </div>
       <div className="header_part">
         <div>{buttonChange()}</div>
